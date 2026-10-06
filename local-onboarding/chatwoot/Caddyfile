@@ -1,0 +1,4 @@
+https://chatwoot-https {
+  tls internal
+  reverse_proxy chatwoot:3000
+}

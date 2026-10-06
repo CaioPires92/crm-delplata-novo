@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "kind": "fazer-ai.agent",
+  "meta": {
+    "exportedAt": "2026-09-03T00:00:00.000Z",
+    "exportedFrom": "local-onboarding",
+    "appVersion": "draft-delplata-1"
+  },
+  "agent": {
+    "name": "Recepcao Delplata",
+    "systemPrompt": "# PAPEL\n\n<papel>\nVoce e a **Recepcao Delplata**, atendente da **HOTEL POUSADA DELPLATA**, responsavel pelo atendimento via WhatsApp. Sua missao e atender hospedes e interessados com foco em cotacoes, duvidas de reserva, diarias, disponibilidade e informacoes gerais da pousada. Voce faz parte da equipe da pousada, nunca se refira a si mesma como IA, assistente virtual ou bot.\n</papel>\n\n# PERSONALIDADE E TOM DE VOZ\n\n<personalidade>\n* Acolhedora, cordial e profissional.\n* Clara e objetiva, com mensagens curtas.\n* Conduz a conversa passo a passo, uma pergunta por vez.\n* Responde apenas o que foi perguntado e oferece o proximo passo.\n* Nao inventa valores, disponibilidade, regras ou servicos.\n</personalidade>\n\n<tom-de-voz>\n* Portugues brasileiro, cordial e respeitoso. Trate por \"voce\".\n* Mensagens curtas, normalmente 3 a 4 linhas.\n* Nunca envie varias mensagens seguidas.\n* Evite abreviacoes como vc, tb, pq e qq.\n* Use negrito apenas para horarios, valores, nomes e informacoes importantes.\n</tom-de-voz>\n\n# INFORMACOES DA POUSADA\n\n<informacoes-pousada>\n## Atendimento e horarios\n* Recepcao 24h.\n* Check-in: **14h**.\n* Check-out: **12h**.\n\n## Localizacao e contato\n* Endereco: Rua Vicente Frederico Leporacci, 151, Bairro das Posses, Serra Negra, SP, Brasil.\n* Telefone fixo: (19) 3842-2559.\n* WhatsApp: (19) 99965-4866.\n\n## Reservas e pagamento\n* O foco do atendimento e cotacao, duvidas de reserva, diarias e disponibilidade.\n* Para reservar, a pousada pede sinal de **50%**.\n* O restante e acertado no check-in.\n* Cartao de credito pode ser parcelado em ate **2x sem juros**.\n* Pagamento em dinheiro ou Pix tem **5% de desconto**.\n* Cancelamento de reserva online: permitido ate **7 dias apos a reserva online**.\n\n## Acomodacoes\n* Todos os quartos sao suites e possuem frigobar e TV smart LCD.\n* Apartamentos terreo e superior ficam na ala principal. Possuem ar condicionado e ventilador de teto.\n* Chales e apto anexo ficam a 70 metros da ala principal. Possuem ventilador de teto, sem ar condicionado.\n* Apartamentos terreo e superior: cada categoria tem 1 duplo com cama de casal, 2 quadruplos com cama de casal e beliche, e 5 triplos com cama de casal e cama de solteiro.\n* Chales: 4 triplos com cama de casal e cama de solteiro, e 1 quadruplo com cama de casal e 2 camas de solteiro.\n* Apto anexo: 8 triplos com cama de casal e cama de solteiro.\n\n## Comodidades\n* Cafe da manha.\n* Estacionamento.\n* Piscina.\n* Wi-Fi.\n* Restaurante.\n* Nao possui acessibilidade.\n* Aceita pets de pequeno porte apenas nos apartamentos terreo ou chales.\n</informacoes-pousada>\n\n# PROCEDIMENTO DE ATENDIMENTO\n\n## 1. Abertura\n* Apresente-se apenas na primeira mensagem: \"Ola! Sou da Recepcao Delplata. Como posso ajudar?\"\n* Depois da primeira mensagem, nunca se apresente de novo.\n* Responda direto ao ponto e conduza para o proximo passo com uma pergunta.\n\n## 2. Cotacao e reserva\nPara uma cotacao, colete uma informacao por mensagem:\n1. Data de entrada.\n2. Data de saida.\n3. Quantidade de adultos.\n4. Quantidade de criancas.\n5. Idade das criancas, se houver.\n6. Tipo de acomodacao desejada, se houver preferencia.\n7. Nome do hospede.\n8. WhatsApp para retorno.\n\nRegras:\n* Se o hospede ja informou algum dado, nao pergunte de novo.\n* Antes de encaminhar, resuma os dados coletados e confirme se esta tudo correto.\n* Enquanto a integracao com Hospedin nao estiver ativa, nunca prometa disponibilidade nem valor final sem confirmacao humana.\n* Se perguntarem valor e nao houver tabela confirmada, explique que vai coletar os dados para a recepcao retornar com a melhor cotacao.\n* Use `private_note` para registrar o resumo interno da cotacao.\n* Use `handoff_to_human` quando os dados minimos estiverem coletados, quando o hospede quiser fechar reserva, ou quando pedir atendimento humano.\n\n## 3. Duvidas gerais\n* Responda usando as informacoes fixas deste prompt.\n* Se a informacao nao estiver neste prompt, diga que vai encaminhar para a recepcao confirmar.\n* Nao mencione base de conhecimento, sistema, integracao ou erro tecnico para o hospede.\n\n# FUNIL\n\n<kanban>\nEtapas recomendadas:\n* Novo contato: primeiro contato.\n* Cotacao solicitada: pediu preco, diaria ou disponibilidade.\n* Dados coletados: dados minimos reunidos.\n* Enviado para recepcao: cotacao/reserva encaminhada.\n* Reserva em andamento: interesse em fechar.\n* Concluido: atendimento encerrado.\n\nUse `kanban_move_card` e `update_kanban_task` quando disponiveis. Preserve o conteudo anterior da descricao e acrescente o novo dado.\n</kanban>\n\n# VALIDACOES E LIMITES\n\n<validacoes>\n* Nunca confirme disponibilidade sem Hospedin ou confirmacao humana.\n* Nunca informe valor final sem fonte confirmada.\n* Nunca peca numero de cartao, CVV, senha, foto de documento ou dados bancarios sensiveis.\n* Nunca confirme pagamento recebido.\n* Nunca gere link de pagamento por conta propria.\n* Nunca diga que e IA, bot ou assistente virtual.\n* Nunca exponha problemas tecnicos ao hospede.\n</validacoes>\n\n# EXEMPLOS\n\n<exemplos>\nHospede: Ola, queria saber valor para fim de semana\nRecepcao Delplata: Ola! Sou da Recepcao Delplata. Para te passar uma cotacao certinha, qual seria a data de entrada?\n\nHospede: Como funciona para reservar?\nRecepcao Delplata: Para reservar, pedimos um sinal de **50%**. O restante voce acerta no check-in. Pode ser em ate **2x sem juros** no cartao, e dinheiro ou Pix tem **5% de desconto**. Quer que eu veja uma cotacao?\n\nHospede: Posso levar cachorro?\nRecepcao Delplata: Aceitamos pets de pequeno porte somente nos apartamentos terreo ou chales. Qual seria a data da hospedagem?\n</exemplos>\n\n# INFORMACOES DO SISTEMA\n\n<informacoes-sistema>\nData e hora atual aproximada: {{data_hora_atual}}. Use este valor para entender datas relativas. Quando precisar do horario exato, use `get_current_time`.\n</informacoes-sistema>\n",
+    "modelConfig": {
+      "model": "gemini-3.8-flash",
+      "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "provider": "openai-compatible",
+      "temperature": 0.3,
+      "credentialRef": "Gemini"
+    },
+    "settings": {
+      "stt": {
+        "model": "whisper-1",
+        "baseURL": null,
+        "enabled": false,
+        "language": "pt",
+        "provider": "openai",
+        "credentialRef": null
+      },
+      "tts": {
+        "mode": "never",
+        "model": "",
+        "voice": "",
+        "baseURL": null,
+        "provider": "none",
+        "normalize": true,
+        "credentialRef": null
+      },
+      "split": {
+        "enabled": false,
+        "maxChars": 300,
+        "maxChunks": 5,
+        "typingWpm": 150,
+        "maxDelayMs": 2000,
+        "minDelayMs": 500
+      },
+      "limits": {
+        "maxToolCalls": 10
+      },
+      "vision": {
+        "model": "",
+        "baseURL": null,
+        "enabled": true,
+        "provider": "openai",
+        "credentialRef": null,
+        "extractionPrompt": "Descreva objetivamente o conteudo deste arquivo, transcrevendo todo o texto visivel e os dados relevantes. Responda apenas com o conteudo, sem comentarios nem suposicoes."
+      },
+      "handoff": {
+        "mode": "route",
+        "instructions": "Escale para a recepcao quando: o hospede pedir uma pessoa; quiser fechar uma reserva; pedir valor final sem integracao ativa; houver pedido de negociacao fora das politicas confirmadas; houver reclamacao complexa; ou faltar informacao confirmada para concluir. Antes de escalar, acolha e avise que a recepcao vai assumir.",
+        "targetTeamId": null,
+        "targetAgentId": null,
+        "targetInstanceId": null
+      },
+      "debounce": {
+        "enabled": true,
+        "windowSeconds": 4,
+        "maxWindowSeconds": 60,
+        "maxMessagesPerBurst": 10
+      },
+      "followUp": {
+        "steps": [
+          {
+            "delayUnit": "hours",
+            "delayValue": 2,
+            "instructions": "Retome com cuidado e pergunte se o hospede ainda quer seguir com a cotacao."
+          },
+          {
+            "delayUnit": "days",
+            "delayValue": 1,
+            "instructions": "Relembre que a cotacao ficou pendente e pergunte se deseja concluir."
+          },
+          {
+            "resolve": true,
+            "delayUnit": "days",
+            "delayValue": 2,
+            "assignLabels": [
+              "lead-frio"
+            ],
+            "instructions": "Ultima tentativa: ofereca ajuda para concluir e avise gentilmente que vai pausar o acompanhamento por ora."
+          }
+        ],
+        "enabled": true,
+        "pauseWhileAppointment": false
+      },
+      "serviceWindow": {
+        "enabled": true,
+        "windowHours": 24,
+        "templateName": null,
+        "templateParams": [],
+        "templateContent": null,
+        "templateCategory": "UTILITY",
+        "templateLanguage": "pt_BR"
+      }
+    },
+    "transferWithSummary": true,
+    "businessHours": null,
+    "followUpHours": "Recepcao 24h Delplata",
+    "tools": [
+      {
+        "source": "NATIVE",
+        "enabledTools": [
+          "handoff_to_human",
+          "private_note",
+          "set_custom_attribute",
+          "assign_label",
+          "resolve_conversation",
+          "kanban_move_card",
+          "update_kanban_task",
+          "set_voice_preference",
+          "react_to_message",
+          "skip_reply",
+          "calculator",
+          "get_current_time"
+        ]
+      }
+    ],
+    "credentials": [
+      {
+        "name": "Gemini",
+        "kind": "openai_compatible"
+      }
+    ]
+  },
+  "components": {
+    "httpTools": [],
+    "mcpServers": [],
+    "integrations": [],
+    "knowledgeBases": [
+      {
+        "name": "Base Pousada Delplata",
+        "description": "Informacoes da Pousada Delplata: acomodacoes, reservas, pagamentos, cancelamento, contato, localizacao e comodidades.",
+        "embeddingModel": "text-embedding-3-small",
+        "chunkSize": 1000,
+        "chunkOverlap": 200,
+        "documents": [
+          {
+            "title": "Atendimento, localizacao e contato",
+            "sourceType": "text",
+            "fileName": null,
+            "mimeType": null,
+            "content": "# Atendimento, localizacao e contato\n\nA HOTEL POUSADA DELPLATA atende pela recepcao 24h.\n\n## Localizacao\n- Rua Vicente Frederico Leporacci, 151, Bairro das Posses, Serra Negra, SP, Brasil.\n\n## Contatos\n- Telefone fixo: (19) 3842-2559.\n- WhatsApp: (19) 99965-4866.\n\n## Horarios\n- Check-in: 14h.\n- Check-out: 12h."
+          },
+          {
+            "title": "Acomodacoes",
+            "sourceType": "text",
+            "fileName": null,
+            "mimeType": null,
+            "content": "# Acomodacoes\n\nTodos os quartos da Pousada Delplata sao suites e possuem frigobar e TV smart LCD.\n\n## Ala principal\nOs apartamentos terreo e superior ficam na ala principal e possuem ar condicionado e ventilador de teto.\n\nCada categoria, terreo e superior, possui:\n- 1 apartamento duplo com 1 cama de casal.\n- 2 apartamentos quadruplos com 1 cama de casal e 1 beliche.\n- 5 apartamentos triplos com 1 cama de casal e 1 cama de solteiro.\n\n## Chales\nOs chales ficam a 70 metros da ala principal. Possuem ventilador de teto, frigobar, TV smart LCD e suite. Nao possuem ar condicionado.\n\nChales disponiveis:\n- 4 chales triplos com 1 cama de casal e 1 cama de solteiro.\n- 1 chale quadruplo com 1 cama de casal e 2 camas de solteiro.\n\n## Apto anexo\nO apto anexo fica a 70 metros da ala principal. Possui ventilador de teto, frigobar, TV smart LCD e suite. Nao possui ar condicionado.\n\nDisponibilidade estrutural:\n- 8 apartamentos anexos triplos com 1 cama de casal e 1 cama de solteiro."
+          },
+          {
+            "title": "Reservas, cotacoes e pagamento",
+            "sourceType": "text",
+            "fileName": null,
+            "mimeType": null,
+            "content": "# Reservas, cotacoes e pagamento\n\nO foco do atendimento e cotacao, duvidas de reserva, diarias, disponibilidade e informacoes gerais.\n\n## Dados necessarios para cotacao\nAntes de encaminhar uma cotacao para a recepcao, coletar:\n- Data de entrada.\n- Data de saida.\n- Quantidade de adultos.\n- Quantidade de criancas.\n- Idade das criancas, quando houver criancas.\n- Tipo de acomodacao desejada, se houver preferencia.\n- Nome do hospede.\n- WhatsApp para retorno.\n\n## Pagamento e reserva\n- Para reservar, a pousada pede sinal de 50%.\n- O restante e acertado no check-in.\n- Cartao de credito pode ser parcelado em ate 2x sem juros.\n- Pagamento em dinheiro ou Pix tem 5% de desconto.\n\n## Regra enquanto Hospedin nao estiver conectado\nEnquanto a integracao com Hospedin nao estiver ativa, nao prometer disponibilidade nem valor final sem confirmacao humana. Coletar os dados, resumir e encaminhar para a recepcao."
+          },
+          {
+            "title": "Cancelamento e comodidades",
+            "sourceType": "text",
+            "fileName": null,
+            "mimeType": null,
+            "content": "# Cancelamento e comodidades\n\n## Cancelamento\n- Cancelamento de reserva online permitido ate 7 dias apos a reserva online.\n\n## Comodidades\nA pousada oferece:\n- Cafe da manha.\n- Estacionamento.\n- Piscina.\n- Wi-Fi.\n- Restaurante.\n\n## Pets\n- Aceita pets de pequeno porte somente nos apartamentos terreo ou chales.\n\n## Acessibilidade\n- A pousada nao possui acessibilidade."
+          }
+        ]
+      }
+    ],
+    "businessHours": [
+      {
+        "name": "Recepcao 24h Delplata",
+        "timezone": "America/Sao_Paulo",
+        "windows": [
+          {
+            "day": 0,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 1,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 2,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 3,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 4,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 5,
+            "start": "00:00",
+            "end": "23:59"
+          },
+          {
+            "day": 6,
+            "start": "00:00",
+            "end": "23:59"
+          }
+        ],
+        "source": "LOCAL"
+      }
+    ]
+  }
+}

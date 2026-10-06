@@ -1,0 +1,317 @@
+{
+  "business": {
+    "name": "HOTEL POUSADA DELPLATA",
+    "agent_name": "Recepcao Delplata",
+    "draft": true,
+    "primary_focus": [
+      "cotacoes",
+      "duvidas sobre reservas",
+      "diarias",
+      "disponibilidade",
+      "informacoes gerais"
+    ],
+    "future_integrations": [
+      {
+        "name": "Hospedin",
+        "purpose": "Consultar disponibilidade, cotacoes e dados de reserva pela API.",
+        "status": "planned"
+      }
+    ],
+    "location": {
+      "street": "Rua Vicente Frederico Leporacci",
+      "number": "151",
+      "neighborhood": "Bairro das Posses",
+      "city": "Serra Negra",
+      "state": "SP",
+      "country": "Brasil"
+    },
+    "contacts": {
+      "phone": "19 3842-2559",
+      "whatsapp": "19 99965-4866"
+    }
+  },
+  "operations": {
+    "front_desk": {
+      "availability": "24h"
+    },
+    "check_in": "14:00",
+    "check_out": "12:00",
+    "amenities": {
+      "breakfast": true,
+      "parking": true,
+      "pool": true,
+      "wifi": true,
+      "restaurant": true,
+      "accessibility": false,
+      "pets": {
+        "accepted": true,
+        "size": "pequeno porte",
+        "allowed_accommodation_types": [
+          "Apartamento terreo",
+          "Chales"
+        ]
+      }
+    }
+  },
+  "reservation_policy": {
+    "deposit_required": true,
+    "deposit_percent": 50,
+    "balance_due": "Acerto do restante no check-in.",
+    "payment_methods": [
+      {
+        "method": "cartao de credito",
+        "installments": 2,
+        "interest_free": true,
+        "discount_percent": 0
+      },
+      {
+        "method": "dinheiro",
+        "discount_percent": 5
+      },
+      {
+        "method": "pix",
+        "discount_percent": 5
+      }
+    ],
+    "agent_guidance": [
+      "Informar que a reserva exige sinal de 50%.",
+      "Informar que o restante e acertado no check-in.",
+      "Informar que cartao de credito pode ser parcelado em ate 2x sem juros.",
+      "Informar que pagamentos em dinheiro ou Pix tem 5% de desconto."
+    ],
+    "cancellation_policy": {
+      "online_reservation": "Cancelamento permitido ate 7 dias apos a reserva online."
+    }
+  },
+  "quote_flow": {
+    "required_fields_before_forwarding": [
+      {
+        "field": "check_in_date",
+        "label": "data de entrada"
+      },
+      {
+        "field": "check_out_date",
+        "label": "data de saida"
+      },
+      {
+        "field": "adults",
+        "label": "quantidade de adultos"
+      },
+      {
+        "field": "children",
+        "label": "quantidade de criancas"
+      },
+      {
+        "field": "children_ages",
+        "label": "idade das criancas",
+        "required_when": "children > 0"
+      },
+      {
+        "field": "preferred_accommodation_type",
+        "label": "tipo de acomodacao desejada"
+      },
+      {
+        "field": "guest_name",
+        "label": "nome do hospede"
+      },
+      {
+        "field": "guest_whatsapp",
+        "label": "WhatsApp para retorno"
+      }
+    ],
+    "agent_guidance": [
+      "Pedir os dados de cotacao de forma natural, sem transformar a conversa em formulario seco.",
+      "Se o cliente ja informar algum dado espontaneamente, nao perguntar de novo.",
+      "Antes de encaminhar para a recepcao, resumir os dados coletados e confirmar se esta tudo correto.",
+      "Enquanto a integracao com Hospedin nao estiver ativa, nao prometer disponibilidade nem valor final sem confirmacao humana."
+    ]
+  },
+  "accommodations": {
+    "general_features": [
+      "frigobar",
+      "TV smart LCD",
+      "suite"
+    ],
+    "areas": [
+      {
+        "name": "Ala principal",
+        "distance_from_main_area_meters": 0,
+        "categories": [
+          {
+            "name": "Apartamento terreo",
+            "quantity": 8,
+            "features": [
+              "ar condicionado",
+              "ventilador de teto",
+              "frigobar",
+              "TV smart LCD",
+              "suite"
+            ],
+            "room_types": [
+              {
+                "name": "Duplo",
+                "quantity": 1,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  }
+                ]
+              },
+              {
+                "name": "Quadruplo",
+                "quantity": 2,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  },
+                  {
+                    "type": "beliche",
+                    "quantity": 1
+                  }
+                ]
+              },
+              {
+                "name": "Triplo",
+                "quantity": 5,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  },
+                  {
+                    "type": "cama de solteiro",
+                    "quantity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Apartamento superior",
+            "quantity": 8,
+            "features": [
+              "ar condicionado",
+              "ventilador de teto",
+              "frigobar",
+              "TV smart LCD",
+              "suite"
+            ],
+            "room_types": [
+              {
+                "name": "Duplo",
+                "quantity": 1,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  }
+                ]
+              },
+              {
+                "name": "Quadruplo",
+                "quantity": 2,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  },
+                  {
+                    "type": "beliche",
+                    "quantity": 1
+                  }
+                ]
+              },
+              {
+                "name": "Triplo",
+                "quantity": 5,
+                "beds": [
+                  {
+                    "type": "cama de casal",
+                    "quantity": 1
+                  },
+                  {
+                    "type": "cama de solteiro",
+                    "quantity": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chales",
+        "distance_from_main_area_meters": 70,
+        "features": [
+          "ventilador de teto",
+          "frigobar",
+          "TV smart LCD",
+          "suite"
+        ],
+        "room_types": [
+          {
+            "name": "Triplo",
+            "quantity": 4,
+            "beds": [
+              {
+                "type": "cama de casal",
+                "quantity": 1
+              },
+              {
+                "type": "cama de solteiro",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "name": "Quadruplo",
+            "quantity": 1,
+            "beds": [
+              {
+                "type": "cama de casal",
+                "quantity": 1
+              },
+              {
+                "type": "cama de solteiro",
+                "quantity": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Apto anexo",
+        "distance_from_main_area_meters": 70,
+        "features": [
+          "ventilador de teto",
+          "frigobar",
+          "TV smart LCD",
+          "suite"
+        ],
+        "room_types": [
+          {
+            "name": "Triplo",
+            "quantity": 8,
+            "beds": [
+              {
+                "type": "cama de casal",
+                "quantity": 1
+              },
+              {
+                "type": "cama de solteiro",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "notes_for_agent": [
+    "Priorizar cotacao e duvidas de reserva antes de informacoes gerais.",
+    "Quando houver integracao com Hospedin, consultar disponibilidade e valores pela API antes de confirmar informacoes dinamicas.",
+    "Enquanto a integracao com Hospedin nao estiver ativa, coletar datas, quantidade de hospedes e tipo de acomodacao desejada para encaminhar a cotacao."
+  ]
+}
