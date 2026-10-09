@@ -72,6 +72,8 @@ services:
       - LOG_LEVEL=${LOG_LEVEL:-info}
       # Local onboarding only: Chatwoot is fronted by an internal HTTPS proxy with a Docker-local CA.
       - NODE_TLS_REJECT_UNAUTHORIZED=${NODE_TLS_REJECT_UNAUTHORIZED:-0}
+      # Local onboarding: Chatwoot is reached through the private Docker network.
+      - SSRF_ALLOW_PRIVATE_TARGETS=${SSRF_ALLOW_PRIVATE_TARGETS:-true}
       - JWT_SECRET=${JWT_SECRET}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}
       # Superuser/owner connection — migrations + bootstrap only. Its user/password MUST match the

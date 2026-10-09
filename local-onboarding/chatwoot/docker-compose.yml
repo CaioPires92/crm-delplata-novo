@@ -24,6 +24,8 @@ x-chatwoot-env: &chatwoot-env
   LOG_LEVEL: '${RAILS_LOG_LEVEL:-info}'
   FRONTEND_URL: '${CHATWOOT_URL}'
   INTERNAL_HOST_URL: 'http://chatwoot:3000'
+  # Local stack: agent bot webhooks target the private Docker service `agents`.
+  SAFE_FETCH_ALLOW_PRIVATE_NETWORK: 'true'
   POSTGRES_HOST: postgres
   POSTGRES_PORT: '5432'
   POSTGRES_USERNAME: '${POSTGRES_USER}'
